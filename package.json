@@ -1,16 +1,18 @@
 {
-  "name": "rock_paper_scissors",
+  "name": "Rockpaperscissors",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "dependencies": {
+    "express": "^4.18.2",
+    "pouchdb": "^7.2.2",
+    "setinterval": "^0.2.4",
+    "socket.io": "^4.1.3"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Katie ",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.18.2",
-    "nodemon": "^2.0.20",
-    "socket.io": "^4.6.1"
-  }
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
