@@ -7,69 +7,56 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-
-	<!-- Bootstrap core CSS -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-	 crossorigin="anonymous">
+	<!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;0,700;1,400&family=KoHo&display=swap"
+    rel="stylesheet">
 
 	<!-- Custom styles for this template -->
-	<link href="/css" rel="stylesheet">
-	<style>
-		* {
-			box-sizing: border-box;
-		}
-
-		.column {
-			float: left;
-			width: 33.33%;
-			padding: 5px;
-		}
-
-		/* Clearfix (clear floats) */
-		.row::after {
-			content: "";
-			clear: both;
-			display: table;
-		}
-
-		/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-		@media screen and (max-width: 700px) {
-			.column {
-				width: 100%;
-			}
-		}
-	</style>
+  <link href="/css" rel="stylesheet">
 </head>
 
 <body class="text-center">
 
-	<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
-		<header class="masthead mb-auto">
-		</header>
+	<div class="cover-container">
 
-		<main role="main" class="inner cover">
-			<h1 class="cover-heading">Rock Paper Scissors</h1>
-			<div id="btndiv">
-				<button id="create" class="btn btn-primary">Create Game</button>
-          <button id="join" class="btn btn-primary">Join Game</button>
+		<main class="inner-cover">
+      <div class="titletop">
+			  <h1 class="cover-heading" id="title" style="display:contents">ROCK PAPER SCISSORS</h1>
+      </div>
+        <div id="btndiv">
+          <div class="join-btn">
+            <button id="join" class="game-btn">JOIN A GAME</button>
+          </div>
+          <div>
+            <button id="create" class="game-btn">NEW MATCH</button>
+          </div>
         </div>
         <div id="creatediv" style="display: none;">
-          <br><br>
-          <h3 id="code">Game code: </h3>
-          <br>
-          <p>Waiting for a player to join...</p>
+          <p>Waiting for Opponent...</p>
+          <div id="codetitle"> Game code: </div>
+          <div id="code"></div>
         </div>
         <div id="choosediv" style="display: none;">
-          <br><br>
-<div class="row">
-  <div class="column">
-    <img id="rock" src="/images/rock.png" alt="rock" style="width:100%">
+        <br><br>
+<div class="images">
+  <div class="imagestitle">
+    SELECT ROCK, PAPER, OR SCISSORS
   </div>
+  <div class="images-container">
   <div class="column">
-    <img id="paper" src="/images/paper.png" alt="paper" style="width:100%">
+      <img id="rock" src="/images/rock.png" alt="rock" >
+      <p>Rock</p>
   </div>
-  <div class="column">
-    <img id="scissors" src="/images/scissors.png" alt="scissors" style="width:100%">
+    <div class="column">
+      <img id="paper" src="/images/paper.png" alt="paper" >
+      <p>Paper</p>
+    </div>
+    <div class="column">
+      <img id="scissors" src="/images/scissors.png" alt="scissors">
+      <p>Scissors</p>
+    </div>
   </div>
 </div>
           <h2 id="time"></p>
@@ -86,24 +73,23 @@
 
         <div id="animationdiv"  style="display: none;">
   <div class="column">
-    <img id="rockz" src="/images/rock.png" alt="rock" style="width:100%">
+    <img id="rockz" src="/images/rock.png" alt="rock" >
   </div>
   <div class="column">
-    <img id="paperz" src="/images/paper.png" alt="paper" style="width:100%">
+    <img id="paperz" src="/images/paper.png" alt="paper">
   </div>
   <div class="column">
-    <img id="scissorsz" src="/images/scissors.png" alt="scissors" style="width:100%">
+    <img id="scissorsz" src="/images/scissors.png" alt="scissors">
   </div>
         </div>
-                       <div id="resultdiv" style="display: none;">
-          <br><br>
-          <h2 id="result"></h3>
-          <br>
-          <div class="column">
-          <h4 id="stats"></h4>
-          </div>
-          <br>
-          <button id="playagain" type="button" class="btn btn-success">Play Again (0/2)</button>
+          <div id="resultdiv" style="display: none;">
+            <br>
+            <h2 id="result"></h3>
+            <div class="resultimgs">
+              <h4 id="stats"></h4>
+            </div>
+            <br>
+            <button id="playagain" type="button" class="btn btn-success">Play Again (0/2)</button>
         </div>
       </main>
     </div> 
@@ -112,8 +98,11 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" inegrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.min.js" integrity="sha512-fB746S+jyTdN2LSWbYSGP2amFYId226wpOeV4ApumcDpIttPxvk1ZPOgnwqwQziRAtZkiFJVx9F64GLAtoIlCQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  inegrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.min.js"
+  integrity="sha512-fB746S+jyTdN2LSWbYSGP2amFYId226wpOeV4ApumcDpIttPxvk1ZPOgnwqwQziRAtZkiFJVx9F64GLAtoIlCQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
       var socket = io()
@@ -135,7 +124,7 @@
         document.getElementById(id).style.display = 'none';
       }
 
-            function show(id) {
+      function show(id) {
         document.getElementById(id).style.display = '';
       }
 
@@ -165,7 +154,7 @@
                 } else if(won == 1) {
                   result = "You lost..."
                 } else {
-                  result = "You won!"
+                  result = "You win!"
                 }
                 innerhtml("result", result)
                 innerhtml("stats", "The time is up!")
@@ -214,7 +203,7 @@
    
                 innerhtml("result", result)
                 
-                innerhtml("stats", `You chose: <img src="/images/${youchose}.png" style="width:100%" alt="${youchose}"><br>Opponent chose: <img src="/images/${opponentchose}.png" style="width:100%" alt="${opponentchose}">`)
+                innerhtml("stats", `You chose: <img src="/images/${youchose}.png" alt="${youchose}"> <br><br> Opponent chose: <img src="/images/${opponentchose}.png" alt="${opponentchose}">`)
       
                 awaitPlayAgain = true;
                 enable("playagain")
@@ -239,23 +228,20 @@ document.getElementById("playagain").onclick =(() => {
     socket.emit("playagain");
     disable("playagain");
      awaitPlayAgain = false;
-
- 
   }
 })
-
-
-
 
  document.getElementById("join").onclick = (() => {
    var code = prompt("Enter game code:")
    if(isNumeric(code)) {
      code = Number(code)
+    hide("title")
    } else {
      return alert("Enter a valid number!")
    }
         disable("create")
         disable("join")
+        hide("title")
           socket.emit("join", code)
           socket.on("started", () => {
             //GAME STARTED
@@ -277,6 +263,7 @@ document.getElementById("playagain").onclick =(() => {
             enable("join")
             enable("create")
             show("btndiv")
+            show('title')
           })
       })
 
@@ -288,8 +275,9 @@ document.getElementById("playagain").onclick =(() => {
           if (json.success) {
           var id = json.id;
           hide("btndiv")
+          hide("title")
           
-          innerhtml("code", "Game Code: "+id)
+          innerhtml("code", id)
           socket.emit("join", id)
           socket.on("joinsuccess", () => {
             show("creatediv")
@@ -306,9 +294,10 @@ document.getElementById("playagain").onclick =(() => {
 
           socket.on("")
           } else {
-                  enable("create")
-        enable("join")
-          }
+              enable("create")
+              enable("join")
+              show('title')
+      }
         })
       })
       </script>
