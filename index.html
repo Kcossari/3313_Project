@@ -32,20 +32,29 @@
           </div>
         </div>
         <div id="creatediv" style="display: none;">
-          <p>Waiting for a opponent...</p>
-          <h3 id="code">Game code: </h3>
+          <p>Waiting for Opponent...</p>
+          <div id="codetitle"> Game code: </div>
+          <div id="code"></div>
         </div>
         <div id="choosediv" style="display: none;">
         <br><br>
-<div class="row">
-  <div class="column">
-    <img id="rock" src="/images/rock.png" alt="rock" style="width:100%">
+<div class="images">
+  <div class="imagestitle">
+    SELECT ROCK, PAPER, OR SCISSORS
   </div>
+  <div class="images-container">
   <div class="column">
-    <img id="paper" src="/images/paper.png" alt="paper" style="width:100%">
+      <img id="rock" src="/images/rock.png" alt="rock" >
+      <p>Rock</p>
   </div>
-  <div class="column">
-    <img id="scissors" src="/images/scissors.png" alt="scissors" style="width:100%">
+    <div class="column">
+      <img id="paper" src="/images/paper.png" alt="paper" >
+      <p>Paper</p>
+    </div>
+    <div class="column">
+      <img id="scissors" src="/images/scissors.png" alt="scissors">
+      <p>Scissors</p>
+    </div>
   </div>
 </div>
           <h2 id="time"></p>
@@ -71,7 +80,7 @@
     <img id="scissorsz" src="/images/scissors.png" alt="scissors" style="width:100%">
   </div>
         </div>
-                       <div id="resultdiv" style="display: none;">
+          <div id="resultdiv" style="display: none;">
           <br><br>
           <h2 id="result"></h3>
           <br>
@@ -218,8 +227,6 @@ document.getElementById("playagain").onclick =(() => {
     socket.emit("playagain");
     disable("playagain");
      awaitPlayAgain = false;
-
- 
   }
 })
 
@@ -227,6 +234,7 @@ document.getElementById("playagain").onclick =(() => {
    var code = prompt("Enter game code:")
    if(isNumeric(code)) {
      code = Number(code)
+    hide("title")
    } else {
      return alert("Enter a valid number!")
    }
@@ -266,7 +274,7 @@ document.getElementById("playagain").onclick =(() => {
           hide("btndiv")
           hide("title")
           
-          innerhtml("code", "Game Code: "+id)
+          innerhtml("code", id)
           socket.emit("join", id)
           socket.on("joinsuccess", () => {
             show("creatediv")

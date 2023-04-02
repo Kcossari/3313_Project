@@ -17,10 +17,6 @@
   padding:100px;
 }
 
-.join-btn{
-
-}
-
 .btndiv{
   display: flex;
   flex-direction: column;
@@ -44,10 +40,55 @@
 
 #creatediv{
   color: #FFD798;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #creatediv p{
-  font-size: 35px;
+  font-size: 45px;
   font-family: 'Kanit', sans-serif;
   font-style: italic;
+  margin-bottom:70px;
+}
+
+#codetitle{
+  font-size: 30px;
+  margin-bottom:10px;
+}
+
+#code{
+  font-size:60px;
+  font-weight: bold;
+}
+
+.images{
+  display: flex;
+  flex-direction: column;
+  color: #FFD798;
+  font-family: 'Kanit', sans-serif;
+  justify-content: center;
+  align-items: center;
+  gap:5rem;
+}
+
+.images img{
+  width:200px;
+}
+.images-container{
+  display: flex;
+  flex-direction: row;
+  gap:3rem;
+}
+
+.imagestitle{
+  font-size: 50px;
+  font-weight: bold;
+  font-family: 'Kanit', sans-serif;
+}
+
+.column{
+  display: flex;
+  flex-direction: column;
 }
