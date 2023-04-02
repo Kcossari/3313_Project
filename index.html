@@ -22,7 +22,9 @@
 	<div class="cover-container">
 
 		<main class="inner-cover">
-			<h1 class="cover-heading" id="title" style="display:contents">ROCK PAPER SCISSORS</h1>
+      <div class="titletop">
+			  <h1 class="cover-heading" id="title" style="display:contents">ROCK PAPER SCISSORS</h1>
+      </div>
         <div id="btndiv">
           <div class="join-btn">
             <button id="join" class="game-btn">JOIN A GAME</button>
@@ -71,24 +73,23 @@
 
         <div id="animationdiv"  style="display: none;">
   <div class="column">
-    <img id="rockz" src="/images/rock.png" alt="rock" style="width:100%">
+    <img id="rockz" src="/images/rock.png" alt="rock" >
   </div>
   <div class="column">
-    <img id="paperz" src="/images/paper.png" alt="paper" style="width:100%">
+    <img id="paperz" src="/images/paper.png" alt="paper">
   </div>
   <div class="column">
-    <img id="scissorsz" src="/images/scissors.png" alt="scissors" style="width:100%">
+    <img id="scissorsz" src="/images/scissors.png" alt="scissors">
   </div>
         </div>
           <div id="resultdiv" style="display: none;">
-          <br><br>
-          <h2 id="result"></h3>
-          <br>
-          <div class="column">
-          <h4 id="stats"></h4>
-          </div>
-          <br>
-          <button id="playagain" type="button" class="btn btn-success">Play Again (0/2)</button>
+            <br>
+            <h2 id="result"></h3>
+            <div class="resultimgs">
+              <h4 id="stats"></h4>
+            </div>
+            <br>
+            <button id="playagain" type="button" class="btn btn-success">Play Again (0/2)</button>
         </div>
       </main>
     </div> 
@@ -153,7 +154,7 @@
                 } else if(won == 1) {
                   result = "You lost..."
                 } else {
-                  result = "You won!"
+                  result = "You win!"
                 }
                 innerhtml("result", result)
                 innerhtml("stats", "The time is up!")
@@ -202,7 +203,7 @@
    
                 innerhtml("result", result)
                 
-                innerhtml("stats", `You chose: <img src="/images/${youchose}.png" style="width:100%" alt="${youchose}"><br>Opponent chose: <img src="/images/${opponentchose}.png" style="width:100%" alt="${opponentchose}">`)
+                innerhtml("stats", `You chose: <img src="/images/${youchose}.png" alt="${youchose}"> <br><br> Opponent chose: <img src="/images/${opponentchose}.png" alt="${opponentchose}">`)
       
                 awaitPlayAgain = true;
                 enable("playagain")
@@ -240,6 +241,7 @@ document.getElementById("playagain").onclick =(() => {
    }
         disable("create")
         disable("join")
+        hide("title")
           socket.emit("join", code)
           socket.on("started", () => {
             //GAME STARTED
@@ -261,6 +263,7 @@ document.getElementById("playagain").onclick =(() => {
             enable("join")
             enable("create")
             show("btndiv")
+            show('title')
           })
       })
 
@@ -291,9 +294,10 @@ document.getElementById("playagain").onclick =(() => {
 
           socket.on("")
           } else {
-                  enable("create")
-        enable("join")
-          }
+              enable("create")
+              enable("join")
+              show('title')
+      }
         })
       })
       </script>
