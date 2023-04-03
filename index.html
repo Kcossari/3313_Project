@@ -20,7 +20,6 @@
 <body class="text-center">
 
 	<div class="cover-container">
-
 		<main class="inner-cover">
       <div class="titletop">
 			  <h1 class="cover-heading" id="title" style="display:contents">ROCK PAPER SCISSORS</h1>
@@ -72,24 +71,25 @@
         </div>
 
         <div id="animationdiv"  style="display: none;">
-  <div class="column">
-    <img id="rockz" src="/images/rock.png" alt="rock" >
-  </div>
-  <div class="column">
-    <img id="paperz" src="/images/paper.png" alt="paper">
-  </div>
-  <div class="column">
-    <img id="scissorsz" src="/images/scissors.png" alt="scissors">
-  </div>
+              <div class="column">
+                <img id="rockz" src="/images/rock.png" alt="rock" >
+              </div>
+              <div class="column">
+                <img id="paperz" src="/images/paper.png" alt="paper">
+              </div>
+              <div class="column">
+                <img id="scissorsz" src="/images/scissors.png" alt="scissors">
+              </div>
         </div>
           <div id="resultdiv" style="display: none;">
             <br>
             <h2 id="result"></h3>
             <div class="resultimgs">
               <h4 id="stats"></h4>
-            </div>
+          </div>
             <br>
             <button id="playagain" type="button" class="btn btn-success">Play Again (0/2)</button>
+            <button id="exit" type="button" class="btn btn-success">Exit Game</button>
         </div>
       </main>
     </div> 
@@ -108,17 +108,17 @@
       var socket = io()
       var awaitChoose = false;
       var awaitPlayAgain = false;
+
       function disable(id) {
         document.getElementById(id).disabled = true;
       }
 
-          function enable(id) {
- document.getElementById(id).disabled = false;
+      function enable(id) {
+        document.getElementById(id).disabled = false;
       }
       function isNumeric(value) {
-    return /^-?\d+$/.test(value);
-}
-
+        return /^-?\d+$/.test(value);
+      }
 
       function hide(id) {
         document.getElementById(id).style.display = 'none';
@@ -199,7 +199,6 @@
                 } else {
                   result = "You won!"
                 }
-
    
                 innerhtml("result", result)
                 
@@ -208,10 +207,9 @@
                 awaitPlayAgain = true;
                 enable("playagain")
                 innerhtml("playagain", "Play Again (0/2)")
-   socket.on("playagainstate", (state) => {
-      innerhtml("playagain", "Play Again ("+state+"/2)")
-     
-    }) 
+                socket.on("playagainstate", (state) => {
+                    innerhtml("playagain", "Play Again ("+state+"/2)")
+                  }) 
               })
 
             })
@@ -230,6 +228,19 @@ document.getElementById("playagain").onclick =(() => {
      awaitPlayAgain = false;
   }
 })
+
+document.getElementById("exit").onclick = (() => {
+  console.log("exiting game")
+   hide('choosediv')
+            hide("resultdiv")
+            hide("waitingdiv")
+            hide("animationdiv")
+            enable("join")
+            enable("create")
+            show("btndiv")
+            show('title')
+  socket.disconnect();
+});
 
  document.getElementById("join").onclick = (() => {
    var code = prompt("Enter game code:")

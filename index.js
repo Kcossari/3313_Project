@@ -106,15 +106,11 @@ games.get(gameid.toString()).then((game) => {
              t.clearInterval()
              t = null;
              games.put(game).catch(console.log)
-              
               })
             }
     } 
 })
   })
-
-
-
           }).catch((e) => {
             socket.emit("joinfail", "Unexpected Error. "+e.toString())
           })
@@ -223,6 +219,7 @@ socket.emit("choosefail", "Unexpected Error Try again")
         socket.emit("choosefail", "Not in game")
       }
   })
+
   
   socket.on("playagain", () => {
     console.log("Got playagain")
@@ -342,22 +339,19 @@ socket.emit("choosefail", "Unexpected Error Try again")
 
   socket.on('disconnect', () => {
     if(socket.ingame) {
-      games.get(socket.gameid.toString()).then((game) => {
-          game.state = "ended";
-          games.put(game).then(() => {
-                        var player1socket = io.sockets.sockets.get(game.player1.id);
-                        var player2socket = io.sockets.sockets.get(game.player2.id);
-                    (socket.whichplayer==1?player2socket:player1socket).emit("ended")
-          }).catch(() => {
-
-          })
-          // DO END STUFF HERE
-        
-      }).catch((e) => {
-        //idk
-      })
+        games.get(socket.gameid.toString()).then((game) => {
+            game.state = "ended";
+            games.put(game).then(() => {
+                io.in(gameid).emit("ended");
+                // DO END STUFF HERE
+            }).catch(() => {
+                // handle error
+            })
+        }).catch((e) => {
+            // handle error
+        })
     }
-  });
+});
 })
 
 server.listen(3000, () => {
