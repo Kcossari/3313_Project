@@ -36,6 +36,7 @@
   font-size: 15px;
   border:none;
   margin:20px;
+  display: inline-block;
 }
 
 #creatediv{
